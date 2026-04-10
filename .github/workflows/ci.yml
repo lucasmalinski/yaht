@@ -1,4 +1,6 @@
 name: CI Habit Tracker
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # segundo https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
 
 # Executa a cada push ou pull request na branch main
 on:
