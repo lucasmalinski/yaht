@@ -1,18 +1,24 @@
-
 # 📝 YAHT - Yet Another Habit Tracker
+
+![Versão](https://img.shields.io/badge/version-1.0.0-blue)
+[![CI Habit Tracker](https://github.com/lucasmalinski/yaht/actions/workflows/ci.yml/badge.svg)](https://github.com/lucasmalinski/yaht/actions/workflows/ci.yml)
+
 ## Tracker de hábitos CLI
 
 ## 🎯 Sobre o Projeto
+
 **Problema Real:** A dificuldade de manter a consistência em pequenas rotinas diárias (como tomar remédios, exercícios ou estudos) pode prejudicar a saúde e a organização pessoal.
 **Solução Proposta:** Uma aplicação simples de interface via linha de comando (CLI) que permite registrar e visualizar o acompanhamento de hábitos diários, definidos pelo usuário, funcionando como um *tracker* minimalista.
 **Público-Alvo:** Estudantes, profissionais e qualquer pessoa que precise de uma ferramenta rápida e sem distrações visuais para monitorar sua rotina.
 
 ## ✨ Funcionalidades Principais
+
 * Registro diário (sim ou não) de uma lista de hábitos pré-definida.
 * Visualização do histórico completo de hábitos armazenados.
 * Salvamento automático e local dos dados em formato JSON.
 
 ## 🛠️ Tecnologias Utilizadas
+
 * **Linguagem:** Python 3
 * **Armazenamento:** Arquivo JSON local
 * **Qualidade e Automação:** `unittest` (Testes), `flake8` (Linting) e GitHub Actions (CI)
@@ -21,6 +27,7 @@
 
 **1. Instalação / Preparação do Ambiente**
 Certifique-se de ter o Python 3 instalado. Clone este repositório e configure o ambiente:
+
 ```bash
 # Clone o repositório
 git clone [INSERIR SEU LINK DO GITHUB AQUI]
@@ -36,6 +43,7 @@ pip install -r requirements.txt
 
 **2. Execução**
 Para iniciar o tracker interativo via terminal, rode:
+
 ```Bash
 python src/planner.py
 ```
@@ -58,10 +66,7 @@ python -m ruff check src/ tests/
 
 ## 📦 Informações do Projeto
 
->Versão Atual: 1.0.0 
-
->Autor: Lucas P. Malinski 
-
->Disciplina: Bootcamp II.
-
->Repositório Público: [[YAHT - Yet Another Habit Tracker](https://github.com/lucasmalinski/yaht)].
+Versão Atual: `1.0.0`
+Autor: `Lucas P. Malinski`
+Disciplina: `Bootcamp II`
+Repositório Público: [YAHT - Yet Another Habit Tracker](https://github.com/lucasmalinski/yaht)
