@@ -3,7 +3,7 @@
 ## Tracker de hábitos CLI
 
 ![Versão](https://img.shields.io/badge/version-1.0.0-blue)
-[![CI Habit Tracker](https://github.com/lucasmalinski/yaht/actions/workflows/ci.yml/badge.svg)](https://github.com/lucasmalinski/yaht/actions/workflows/ci.yml)
+[![CI YAHT](https://github.com/lucasmalinski/yaht/actions/workflows/ci.yml/badge.svg)](https://github.com/lucasmalinski/yaht/actions/workflows/ci.yml)
 
 ## 🎯 Sobre o Projeto
 
