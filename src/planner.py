@@ -3,38 +3,49 @@ from datetime import datetime
 import os
 import time
 
-# Definir os hábitos
-HABITS = ["take your meds", "track macros", "daily exercise", "apply skincare", "have lunch", "take 50 min of CS50", "jump 100x", "add a daily journal entry", "register expenses" ]
-
-# Buscar o diretório em que o script está
+# --- CONFIGURAÇÕES ---
+HABITS = ["take your meds", "track macros", "daily exercise", "apply skincare", "have lunch", "take 50 min of CS50", "jump 100x", "add a daily journal entry", "register expenses"]
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Define o nome do arquivo Json a ser salvo
 FILE_NAME = os.path.join(SCRIPT_DIR, "habit_tracker.json")
 
-# Load existing habit data from JSON file
-def load_data():
+# ==========================================
+# 1. LÓGICA CENTRAL (Testável)
+# ==========================================
+
+def load_data(file_path):
+    """Carrega os dados. Recebe o caminho do arquivo como parâmetro para facilitar testes."""
     try:
-        with open(FILE_NAME, 'r') as file:
+        with open(file_path, 'r') as file:
             return json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
-# Salvar entrada de hábitos ao json
-def save_data(data):
-    with open(FILE_NAME, 'w') as file:
+def save_data(data, file_path):
+    """Salva os dados. Recebe o caminho do arquivo como parâmetro."""
+    with open(file_path, 'w') as file:
         json.dump(data, file, indent=4)
 
-# Validar formato de data (dd-mm-yyyy)
 def validate_date(date_str):
+    """Valida o formato da data (dd-mm-yyyy)."""
     try:
         datetime.strptime(date_str, "%d-%m-%y")
         return True
     except ValueError:
         return False
 
-# Adicionar entrada ao json
-def add_entry(habit_data):
+def process_habit_entry(habit_data, date, daily_habits):
+    """
+    Apenas atualiza o dicionário com os hábitos do dia.
+    Foco dos testes automatizados.
+    """
+    habit_data[date] = daily_habits
+    return habit_data
+
+# ==========================================
+# 2. INTERFACE DE USUÁRIO - CLI (Excluída dos testes CI)
+# ==========================================
+
+def add_entry_cli(habit_data):
     today = datetime.now().strftime("%d-%m-%y")
     while True:
         askday = input("\n    Data a ser registrada (HOJE = 0 / OU dd-mm-yyyy) - ").strip()
@@ -45,57 +56,54 @@ def add_entry(habit_data):
             day = askday
             break
         else:
-            print("    Invalid date format. Please enter in dd-mm-yyyy format.")
+            print("    Formato de data inválida. Insira a data no formato dd-mm-yyyy.")
 
-    print(f"    Day selected is {day}\n")
+    print(f"    O dia selecionado é {day}\n")
     done = {}
 
     for habit in HABITS:
         while True:
-            answer = input(f"    Did you {habit}? (y/n) - ").strip().lower()
+            answer = input(f"    Você realizou '{habit}'? [insira y para sim / n para não] - ").strip().lower()
             if answer in ['y', 'yes', 'n', 'no']:
                 done[habit] = answer in ['y', 'yes']
                 break
-            print("    Please enter a valid answer (y/n).")
+            print("    Favor responder no formato válido (y/n).")
 
-    # Adiciona ou substitui entrada de um determinado dia
-    habit_data[day] = done
-    save_data(habit_data)
-    print("\n    Saving entry for the day...")
+    # Chamada daLógica central
+    process_habit_entry(habit_data, day, done)
+    
+    # Salvamos o arquivo
+    save_data(habit_data, FILE_NAME)
+    print("\n    Salvando entrada diária...")
 
-# Visualizar histórico de hábitos
-def view_tracker(habit_data):
+def view_tracker_cli(habit_data):
     if habit_data:
-        print("\nCurrent habit tracker status:")
+        print("\nHistórico do registro de hábitos:")
         for date, habits in habit_data.items():
             print(f"    {date}: {habits}")
             print("")
         time.sleep(2)
     else:
-        print("    No entries in the tracker yet.\n")
+        print("    Sem entradas no histórico.\n")
         time.sleep(2.5)
 
-# Main menu loop
 def main():
-    habit_data = load_data()
+    habit_data = load_data(FILE_NAME)
 
     while True:
-        print(f"Tracker de Hábitos Diários| Dados salvos em: {FILE_NAME}\n")
+        print(f"Tracker de Hábitos Diários | Dados salvos em: {FILE_NAME}\n")
         print("1. Adicionar entrada a uma data\n2. Visualizar Tracker\n3. Sair do programa")
 
         menu = input("\nInsira uma das opções do menu: (1/2/3) - ").strip()
         if menu == "1":
-            add_entry(habit_data)
-            
+            add_entry_cli(habit_data)
         elif menu == "2":
-            view_tracker(habit_data)
-            
+            view_tracker_cli(habit_data)
         elif menu == "3":
             print("    Fechando programa...")
             break
         else:
             print("    Favor selecionar uma entrada válida do menu (1/2/3).")
-            
 
 if __name__ == "__main__":
     main()
