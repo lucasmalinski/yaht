@@ -1,8 +1,5 @@
 name: CI Habit Tracker
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
-
 on:
   push:
     branches: [ "main" ]
@@ -15,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Configurar Python 3.14.3
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.14.3"
 
