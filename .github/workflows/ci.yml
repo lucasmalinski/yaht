@@ -1,8 +1,8 @@
 name: CI Habit Tracker
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # segundo https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
 
-# Executa a cada push ou pull request na branch main
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
 on:
   push:
     branches: [ "main" ]
@@ -14,23 +14,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-    - name: Configurar Python 3.14.3
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.14.3"
+      - name: Configurar Python 3.14.3
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14.3"
 
-    - name: Instalar dependências
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: Executar Linting (Ruff)
-      run: |
-        python -m ruff check src/ tests/
+      - name: Executar Linting (Ruff)
+        run: |
+          python -m ruff check src/ tests/
 
-    - name: Executar Testes Automatizados (Unittest)
-      run: |
-        python -m unittest tests/test_planner.py
+      - name: Executar Testes Automatizados (Unittest)
+        run: |
+          python -m unittest tests/test_planner.py
