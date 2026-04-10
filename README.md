@@ -30,8 +30,8 @@ Certifique-se de ter o Python 3 instalado. Clone este repositório e configure o
 
 ```bash
 # Clone o repositório
-git clone [INSERIR SEU LINK DO GITHUB AQUI]
-cd meu-habit-tracker
+git clone https://github.com/lucasmalinski/yaht
+cd yaht
 
 # Crie e ative o ambiente virtual
 python -m venv .venv
