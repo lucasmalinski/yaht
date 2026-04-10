@@ -1,4 +1,4 @@
-name: CI Habit Tracker
+name: CI YAHT 
 
 on:
   push:
