@@ -87,5 +87,5 @@ python -m ruff check src/ tests/
 | Versão Atual        | `1.2.0`                                                                   |
 |---------------------|---------------------------------------------------------------------------|
 | Autor               | Lucas P. Malinski                                                         |
-| Disciplina          | Bootcamp II                                                               |
+| Disciplina          | Bootcamp II  - Prof. Dr. Romes Heriberto                                  |
 | Repositório Público | [YAHT - Yet Another Habit Tracker](https://github.com/lucasmalinski/yaht) |
