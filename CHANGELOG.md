@@ -1,7 +1,11 @@
 # 📓 CHANGELOG
 
+## [1.2.0] - 11/04/2026
+### Funcionalidades
+- **Configuração Externa:** Agora os hábitos são carregados de um arquivo `habits.txt`, permitindo personalização sem mexer no código. Implementada lista de hábitos padrão (fallback) caso o arquivo de configuração não seja encontrado.
+
 ## [1.1.0] - 11/04/2026
-###  Funcionalidades
+### Funcionalidades
 - **Validação:** Atualizado o formato de data aceito para `dd-mm-YYYY` em `planner.py` e `test_planner.py`.
 
 ### Arquitetura e Refatoração
