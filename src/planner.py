@@ -3,8 +3,6 @@ from datetime import datetime
 from pathlib import Path
 import time
 
-
-
 # --- CONFIGURAÇÕES ---
 MAIN_DIR =  Path(__file__).resolve().parent.parent
 HISTORY_PATH = MAIN_DIR / "data/historico_de_habitos.json"
