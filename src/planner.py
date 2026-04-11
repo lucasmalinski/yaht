@@ -1,12 +1,14 @@
 import json
 from datetime import datetime
-import os
+from pathlib import Path
 import time
 
+
 # --- CONFIGURAÇÕES ---
+MAIN_DIR =  Path(__file__).resolve().parent.parent
+HISTORY_PATH = MAIN_DIR / "data/historico_de_habitos.json"
+HABITS_PATH = MAIN_DIR / "habits.txt"
 HABITS = ["take your meds", "track macros", "daily exercise", "apply skincare", "have lunch", "take 50 min of CS50", "jump 100x", "add a daily journal entry", "register expenses"]
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-FILE_NAME = os.path.join(SCRIPT_DIR, "habit_tracker.json")
 
 # ==========================================
 # 1. LÓGICA CENTRAL (Testável)
@@ -73,7 +75,7 @@ def add_entry_cli(habit_data):
     process_habit_entry(habit_data, day, done)
     
     # Salvamos o arquivo
-    save_data(habit_data, FILE_NAME)
+    save_data(habit_data, HISTORY_PATH)
     print("\n    Salvando entrada diária...")
 
 def view_tracker_cli(habit_data):
@@ -88,10 +90,10 @@ def view_tracker_cli(habit_data):
         time.sleep(2.5)
 
 def main():
-    habit_data = load_data(FILE_NAME)
+    habit_data = load_data(HISTORY_PATH)
 
     while True:
-        print(f"Tracker de Hábitos Diários | Dados salvos em: {FILE_NAME}\n")
+        print(f"Tracker de Hábitos Diários | Dados salvos em: {HISTORY_PATH}\n")
         print("1. Adicionar entrada a uma data\n2. Visualizar Tracker\n3. Sair do programa")
 
         menu = input("\nInsira uma das opções do menu: (1/2/3) - ").strip()
