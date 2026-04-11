@@ -4,6 +4,7 @@ from pathlib import Path
 import time
 
 
+
 # --- CONFIGURAÇÕES ---
 MAIN_DIR =  Path(__file__).resolve().parent.parent
 HISTORY_PATH = MAIN_DIR / "data/historico_de_habitos.json"
@@ -30,7 +31,7 @@ def save_data(data, file_path):
 def validate_date(date_str):
     """Valida o formato da data (dd-mm-yyyy)."""
     try:
-        datetime.strptime(date_str, "%d-%m-%y")
+        datetime.strptime(date_str, "%d-%m-%Y")
         return True
     except ValueError:
         return False
@@ -48,7 +49,7 @@ def process_habit_entry(habit_data, date, daily_habits):
 # ==========================================
 
 def add_entry_cli(habit_data):
-    today = datetime.now().strftime("%d-%m-%y")
+    today = datetime.now().strftime("%d-%m-%Y")
     while True:
         askday = input("\n    Data a ser registrada (HOJE = 0 / OU dd-mm-yyyy) - ").strip()
         if askday == '0':
