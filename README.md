@@ -28,7 +28,7 @@ Estudantes, profissionais e qualquer pessoa que possua mínima familiaridade com
 
 * **Linguagem:** Python 3
 * **Armazenamento:** Arquivo JSON local
-* **Qualidade e Automação:** `unittest` (Testes), `flake8` (Linting) e GitHub Actions (CI)
+* **Qualidade e Automação:** `unittest` (Testes), `ruff` (Linting) e GitHub Actions (CI)
 
 ## 🚀 Como Executar
 
