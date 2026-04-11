@@ -1,7 +1,8 @@
 import unittest
 
 # Importadas apenas as funções de backend, ignorando a interface CLI
-from src.planner import validate_date, process_habit_entry
+from src.planner import validate_date, process_habit_entry, load_habits_from_file
+from pathlib import Path
 
 class TestHabitTracker(unittest.TestCase):
 
@@ -56,6 +57,14 @@ class TestHabitTracker(unittest.TestCase):
         # Validação
         self.assertTrue(updated_data["15-08-2023"]["tomar remédios"]) # Deve ter mudado para True
         self.assertTrue(updated_data["14-08-2023"]["tomar remédios"]) # Dia 14 *não* pode ter sumido ou alterado
+
+    def test_load_habits_from_file_fallback(self):
+        """Testa se o sistema usa hábitos padrão caso o arquivo não exista"""
+    
+        path_inexistente = Path("arquivo_que_nao_existe.txt")
+        habits = load_habits_from_file(path_inexistente)
+        self.assertTrue(len(habits) > 0)
+        self.assertIn("Exercício Diário", habits)
 
 if __name__ == '__main__':
     unittest.main()
