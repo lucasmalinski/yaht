@@ -9,11 +9,28 @@ import time
 MAIN_DIR =  Path(__file__).resolve().parent.parent
 HISTORY_PATH = MAIN_DIR / "data/historico_de_habitos.json"
 HABITS_PATH = MAIN_DIR / "habits.txt"
-HABITS = ["take your meds", "track macros", "daily exercise", "apply skincare", "have lunch", "take 50 min of CS50", "jump 100x", "add a daily journal entry", "register expenses"]
 
 # ==========================================
 # 1. LÓGICA CENTRAL (Testável)
 # ==========================================
+
+def load_habits_from_file(file_path):
+    """Lê a lista de hábitos de um arquivo externo, ignorando comentários e linhas vazias."""
+    default_habits = ["Exercício Diário", "Meditação", "Leitura"]
+    
+    if not file_path.exists():
+        return default_habits
+
+    habits = []
+    with open(file_path, "r", encoding="utf-8") as f:
+        for line in f:
+            clean_line = line.strip()
+            if clean_line and not clean_line.startswith("#"):
+                habits.append(clean_line)
+    
+    return habits if habits else default_habits
+
+HABITS = load_habits_from_file(HABITS_PATH)
 
 def load_data(file_path):
     """Carrega os dados. Recebe o caminho do arquivo como parâmetro para facilitar testes."""
@@ -29,7 +46,7 @@ def save_data(data, file_path):
         json.dump(data, file, indent=4)
 
 def validate_date(date_str):
-    """Valida o formato da data (dd-mm-yyyy)."""
+    """Valida o formato da data (dd-mm-YYYY)."""
     try:
         datetime.strptime(date_str, "%d-%m-%Y")
         return True
@@ -51,7 +68,7 @@ def process_habit_entry(habit_data, date, daily_habits):
 def add_entry_cli(habit_data):
     today = datetime.now().strftime("%d-%m-%Y")
     while True:
-        askday = input("\n    Data a ser registrada (HOJE = 0 / OU dd-mm-yyyy) - ").strip()
+        askday = input("\n    Data a ser registrada (HOJE = 0 / OU dd-mm-YYYY) - ").strip()
         if askday == '0':
             day = today
             break
@@ -59,18 +76,18 @@ def add_entry_cli(habit_data):
             day = askday
             break
         else:
-            print("    Formato de data inválida. Insira a data no formato dd-mm-yyyy.")
+            print("    Formato de data inválida. Insira a data no formato dd-mm-YYYY.")
 
     print(f"    O dia selecionado é {day}\n")
     done = {}
 
     for habit in HABITS:
         while True:
-            answer = input(f"    Você realizou '{habit}'? [insira y para sim / n para não] - ").strip().lower()
-            if answer in ['y', 'yes', 'n', 'no']:
-                done[habit] = answer in ['y', 'yes']
+            answer = input(f"    Você {habit}? [insira s para sim / n para não] - ").strip().lower()
+            if answer in ['s', 'n']:
+                done[habit] = answer in ['s']
                 break
-            print("    Favor responder no formato válido (y/n).")
+            print("    Favor responder no formato válido (s/n).")
 
     # Chamada daLógica central
     process_habit_entry(habit_data, day, done)
