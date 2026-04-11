@@ -1,0 +1,18 @@
+# ==========================================================================================
+# INSIRA SUA LISTA DE HÁBITOS ABAIXO
+# ==========================================================================================
+#   Notas: 
+#       Insira comentários com #
+#       Cada linha preenchida e não começada com '#' configura um hábito que o sistema lerá
+#       Leve em consideração a estrutura semântica (verbo) da pergunta na aplicação CLI
+#           ex: 'Você [hábito]?'
+# ==========================================================================================
+
+tomou remédios
+registrou ingestão calórica
+realizou exercício 
+aplicou skincare
+fez todas as refeições do dia
+estudou por 50 minutos
+escreveu no diário
+registrou gastos
